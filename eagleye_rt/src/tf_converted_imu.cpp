@@ -94,7 +94,7 @@ TFConvertedIMU::TFConvertedIMU() : Node("eagleye_tf_converted_imu"),
   std::cout<< "tf_base_link_frame: " << tf_base_link_frame_ << std::endl;
   std::cout<< "reverse_imu_wz: " << reverse_imu_wz_ << std::endl;
 
-  sub_ =  create_subscription<sensor_msgs::msg::Imu>(subscribe_imu_topic_name, rclcpp::QoS(10), std::bind(&TFConvertedIMU::imu_callback, this, std::placeholders::_1));
+  sub_ =  create_subscription<sensor_msgs::msg::Imu>(subscribe_imu_topic_name, rclcpp::SensorDataQoS(), std::bind(&TFConvertedIMU::imu_callback, this, std::placeholders::_1));
   pub_ = create_publisher<sensor_msgs::msg::Imu>("imu/data_tf_converted", rclcpp::QoS(10));
 };
 

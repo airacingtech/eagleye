@@ -71,12 +71,12 @@ TwistRelay::TwistRelay() : Node("eagleye_twist_relay"),
   // TwistStamped : 0, TwistWithCovarianceStamped: 1
   if(subscribe_twist_topic_type == 0)
   {
-    twist_sub_ =  create_subscription<geometry_msgs::msg::TwistStamped>(subscribe_twist_topic_name, rclcpp::QoS(10),
+    twist_sub_ =  create_subscription<geometry_msgs::msg::TwistStamped>(subscribe_twist_topic_name, rclcpp::SensorDataQoS(),
         std::bind(&TwistRelay::twist_callback, this, std::placeholders::_1));
   }
   else if(subscribe_twist_topic_type == 1)
   {
-    twist_with_covariance_sub_ = create_subscription<geometry_msgs::msg::TwistWithCovarianceStamped>(subscribe_twist_topic_name, rclcpp::QoS(10),
+    twist_with_covariance_sub_ = create_subscription<geometry_msgs::msg::TwistWithCovarianceStamped>(subscribe_twist_topic_name, rclcpp::SensorDataQoS(),
         std::bind(&TwistRelay::twist_with_covariance_callback, this, std::placeholders::_1));
   }
   else 

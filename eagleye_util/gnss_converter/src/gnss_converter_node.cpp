@@ -158,7 +158,7 @@ int main(int argc, char** argv)
   else if(velocity_source_type == 3)
   {
     gnss_velocity_sub = node->create_subscription<geometry_msgs::msg::TwistWithCovarianceStamped>(
-        velocity_source_topic, 1000, gnss_velocity_callback);
+        velocity_source_topic, rclcpp::SensorDataQoS(), gnss_velocity_callback);
   }
   else 
   {
@@ -176,7 +176,7 @@ int main(int argc, char** argv)
   }
   else if(llh_source_type == 2)
   {
-    navsatfix_sub = node->create_subscription<sensor_msgs::msg::NavSatFix>(llh_source_topic, 1000, navsatfix_callback);
+    navsatfix_sub = node->create_subscription<sensor_msgs::msg::NavSatFix>(llh_source_topic, rclcpp::SensorDataQoS(), navsatfix_callback);
   }
   else 
   {
